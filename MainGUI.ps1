@@ -33,7 +33,7 @@ function convertText {
 }
 
 
-$GuiBackgroundImage = [system.drawing.image]::FromFile("C:\Users\Lord Mordon\Documents\deploy\gui\Background.png");
+$GuiBackgroundImage = [system.drawing.image]::FromFile(".\Background.png");
 
 $form = New-Object System.Windows.Forms.Form
 
@@ -82,12 +82,7 @@ $form.Controls.Add($ButtonUP)
 $ButtonUP.Add_Click(
 {
 
-     #Start 'C:\Users\Lord Mordon\Documents\deploy\gui\gui.ps1'
-     #Writhe-Host "a"
-     Start-process PowerShell -argument "-noexit -command 'C:\Users\Lord Mordon\Documents\deploy\gui\gui.ps1'"
-     #Write-Output "A"
-     #Start-process powershell -argument "'C:\Users\Lord Mordon\Documents\deploy\gui\gui.ps1'"
-
+     Start-process PowerShell -argument "-noexit -file .\CaptuerImageGUI.ps1" -NoNewWindow
 
 }
 )
