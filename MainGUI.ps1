@@ -77,12 +77,43 @@ $ButtonUP.ForeColor             = "#ffffff"
 $form.Controls.Add($ButtonUP)
 
 
+$ButtonApllyIMG = New-Object System.Windows.Forms.Button
+
+$ButtonApllyIMG.BackColor             = "#707070"
+
+$ButtonApllyIMG.text                  = "Apply Image"
+
+$ButtonApllyIMG.width                 = convertWidth(9)
+
+$ButtonApllyIMG.height                = convertHeigth(3)
+
+$ButtonApllyIMGpos1 = convertWidth(11)
+
+$ButtonApllyIMGpos2 = convertHeigth(96)
+
+$ButtonApllyIMG.location              = New-Object System.Drawing.Point($ButtonApllyIMGpos1,$ButtonApllyIMGpos2)
+
+$ButtonApllyIMG.Font                  = ('Microsoft Sans Serif,' + [String](convertText(0.6)))
+
+$ButtonApllyIMG.ForeColor             = "#ffffff"
+
+$form.Controls.Add($ButtonApllyIMG)
+
+
 
 
 $ButtonUP.Add_Click(
 {
 
      Start-process PowerShell -argument "-noexit -file .\CaptuerImageGUI.ps1" -NoNewWindow
+
+}
+)
+
+$ButtonApllyIMG.Add_Click(
+{
+
+     Start-process PowerShell -argument "-noexit -file .\ApllyImageGUI.ps1" -NoNewWindow
 
 }
 )
