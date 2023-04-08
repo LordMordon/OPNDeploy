@@ -402,7 +402,7 @@ $ButtonUP.Add_Click(
 
 If($global:SelectetDirveNumber -lt ($G.Number.Length -1)){$global:SelectetDirveNumber = ($global:SelectetDirveNumber + 1)};
 
-Write-Host $SelectetDirveNumber
+#Write-Host $SelectetDirveNumber
 
 $tempDrive = $G | Where-Object Number -eq $SelectetDirveNumber
 
@@ -731,6 +731,6 @@ $form.ShowDialog()
 
  
 
-Write-Output $G;
+#Write-Output $G;
 
-Write-Output $SelectetDirveNumber;
+#Write-Output $SelectetDirveNumber;
