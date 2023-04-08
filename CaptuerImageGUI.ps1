@@ -24,7 +24,7 @@ $form = New-Object System.Windows.Forms.Form
 
 $form.Text = 'Capture Image'
 
-$form.Size = New-Object System.Drawing.Size(763,243)
+$form.Size = New-Object System.Drawing.Size(772,253)
 
 $form.StartPosition = 'CenterScreen'
 
@@ -234,7 +234,7 @@ $Button.Size = New-Object System.Drawing.Size(150,150)
 
 $tempDrive = $G | Where-Object Number -eq $SelectetDirveNumber
 
-$ButtonText = ("Name:`n" + $tempDrive.FriendlyName + "`nDiskNumber: " + $tempDrive.Number + "`n Size:" + „{0:N2}“ –f (($tempDrive.Size) / 1073741824) + " GB")
+$ButtonText = ("Name:`n" + $tempDrive.FriendlyName + "`nDiskNumber: " + $tempDrive.Number + "`n Size:" + "{0:N2}" -f (($tempDrive.Size) / 1073741824) + " GB")
 
 $Button.Text = $ButtonText
 
@@ -315,19 +315,19 @@ $sizeOfAllErlierButtons = 150
 
         if($G2[$i].Size -gt 1073741824){
 
-            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1073741824) + " GB")
+            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1073741824) + " GB")
 
         }elseif($G2[$i].Size -gt 1048576){
 
-            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1048576) + " MB")
+            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1048576) + " MB")
 
         }elseif($G2[$i].Size -gt 1024){
 
-            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1024) + " KB")
+            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1024) + " KB")
 
         }elseif($G2[$i].Size -gt 0){
 
-            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size)) + " B")
+            $ButtonText7[$i] = ($ButtonName7[$i] + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size)) + " B")
 
         }
 
@@ -386,7 +386,7 @@ $Button.Location = New-Object System.Drawing.Point(0,30)
 
 $Button.Size = New-Object System.Drawing.Size(150,150)
 
-$ButtonText = ("Name:`n" + $tempDrive.FriendlyName + "`nDiskNumber: " + $tempDrive.Number + "`n Size:" + „{0:N2}“ –f (($tempDrive.Size) / 1073741824) + " GB")
+$ButtonText = ("Name:`n" + $tempDrive.FriendlyName + "`nDiskNumber: " + $tempDrive.Number + "`n Size:" + "{0:N2}" -f (($tempDrive.Size) / 1073741824) + " GB")
 
 $Button.Text = $ButtonText
 
@@ -416,19 +416,19 @@ for($i = 0; $G2.PartitionNumber.Length -gt $i; $i++){
 
         if($G2[$i].Size -gt 1073741824){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1073741824) + " GB")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1073741824) + " GB")
 
         }elseif($G2[$i].Size -gt 1048576){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1048576) + " MB")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1048576) + " MB")
 
         }elseif($G2[$i].Size -gt 1024){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1024) + " KB")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1024) + " KB")
 
         }elseif($G2[$i].Size -gt 0){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size)) + " B")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size)) + " B")
 
         }
 
@@ -495,7 +495,7 @@ $ButtonDown.Add_Click(
 
   $Button.Size = New-Object System.Drawing.Size(150,150)
 
-  $ButtonText = ("Name:`n" + $tempDrive.FriendlyName + "`nDiskNumber: " + $tempDrive.Number + "`n Size:" + „{0:N2}“ –f (($tempDrive.Size) / 1073741824) + " GB")
+  $ButtonText = ("Name:`n" + $tempDrive.FriendlyName + "`nDiskNumber: " + $tempDrive.Number + "`n Size:" + "{0:N2}" -f (($tempDrive.Size) / 1073741824) + " GB")
 
   $Button.Text = $ButtonText
 
@@ -525,19 +525,19 @@ $ButtonDown.Add_Click(
 
         if($G2[$i].Size -gt 1073741824){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1073741824) + " GB")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1073741824) + " GB")
 
         }elseif($G2[$i].Size -gt 1048576){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1048576) + " MB")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1048576) + " MB")
 
         }elseif($G2[$i].Size -gt 1024){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size) / 1024) + " KB")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size) / 1024) + " KB")
 
         }elseif($G2[$i].Size -gt 0){
 
-            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + „{0:N2}“ –f (($G2[$i].Size)) + " B")
+            $ButtonText7[$i] = ($G2[$i].Type + "(" + $G2[$i].DriveLetter + ")" + "`n Size:" + "{0:N2}" -f (($G2[$i].Size)) + " B")
 
         }
 
