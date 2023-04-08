@@ -156,7 +156,7 @@ $objCompressionLabel.Size     = New-Object System.Drawing.Size(90,20)
 
 $objCompressionLabel.Font     = 'Microsoft Sans Serif,10'
 
-$objCompressionLabel.Text     = "Compression:"
+$objCompressionLabel.Text     = "Startup Type:"
 
 $form.Controls.Add($objCompressionLabel)
 
@@ -176,11 +176,9 @@ $form.Controls.Add($objCombobox)
 
 $form.Topmost = $True
 
-[void] $objCombobox.Items.Add("Max")
+[void] $objCombobox.Items.Add("Bios")
 
-[void] $objCombobox.Items.Add("Fast")
-
-[void] $objCombobox.Items.Add("None")
+[void] $objCombobox.Items.Add("Uefi")
 
 $objCombobox.Add_SelectedIndexChanged({ })
 
@@ -192,15 +190,45 @@ $objTypeCheckbox = New-Object System.Windows.Forms.Checkbox
 
 $objTypeCheckbox.Location = New-Object System.Drawing.Size(420,5)
 
-$objTypeCheckbox.Size = New-Object System.Drawing.Size(500,20)
+$objTypeCheckbox.Size = New-Object System.Drawing.Size(130,20)
 
 $objTypeCheckbox.Font       = 'Microsoft Sans Serif,10'
 
-$objTypeCheckbox.Text       = ":Verify"
+$objTypeCheckbox.Text       = ":Recovery Pation"
 
 $objTypeCheckbox.TabIndex = 1
 
 $form.Controls.Add($objTypeCheckbox)
+
+
+$objTypeCheckboxCompactOS = New-Object System.Windows.Forms.Checkbox
+
+$objTypeCheckboxCompactOS.Location = New-Object System.Drawing.Size(550,5)
+
+$objTypeCheckboxCompactOS.Size = New-Object System.Drawing.Size(110,20)
+
+$objTypeCheckboxCompactOS.Font       = 'Microsoft Sans Serif,10'
+
+$objTypeCheckboxCompactOS.Text       = ":Compact OS"
+
+$objTypeCheckboxCompactOS.TabIndex = 1
+
+$form.Controls.Add($objTypeCheckboxCompactOS)
+
+
+$objTypeCheckboxEA = New-Object System.Windows.Forms.Checkbox
+
+$objTypeCheckboxEA.Location = New-Object System.Drawing.Size(660,5)
+
+$objTypeCheckboxEA.Size = New-Object System.Drawing.Size(500,20)
+
+$objTypeCheckboxEA.Font       = 'Microsoft Sans Serif,10'
+
+$objTypeCheckboxEA.Text       = ":EA"
+
+$objTypeCheckboxEA.TabIndex = 1
+
+$form.Controls.Add($objTypeCheckboxEA)
 
 
 
@@ -595,23 +623,90 @@ $ButtonDown.Add_Click(
  
 
 $captureBtn.Add_Click(
-
 {
 
-    if($objTypeCheckbox.Checked -eq $true){
-
-        New-WindowsImage -ImagePath $objTextBox.Text -CapturePath ( $SelectetDirveLeter + ":\") -Name "Capturet Image" -Verify -CompressionType $objCombobox.text
-
+    if($objCombobox.Text -eq "Uefi"){
+        if($objTypeCheckbox.Checked -eq $true){
+            Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
+            if($objTypeCheckboxCompactOS.Checked -eq $true){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                }
+            }
+            elseif($objTypeCheckboxCompactOS.Checked -eq $false){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                }
+            }
+        }esle{
+            Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
+            if($objTypeCheckboxCompactOS.Checked -eq $true){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                }
+            }
+            elseif($objTypeCheckboxCompactOS.Checked -eq $false){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                }
+            }
+            
+        }
     }
-
-    else{
-
-        New-WindowsImage -ImagePath $objTextBox.Text -CapturePath ( $SelectetDirveLeter + ":\") -Name "Capturet Image" -CompressionType $objCombobox.text
-
+    
+    if($objCombobox.Text -eq "Bios"){
+        if($objTypeCheckbox.Checked -eq $true){
+            Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
+            if($objTypeCheckboxCompactOS.Checked -eq $true){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                }
+            }
+            elseif($objTypeCheckboxCompactOS.Checked -eq $false){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                }
+            }
+        }esle{
+            Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
+            if($objTypeCheckboxCompactOS.Checked -eq $true){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                }
+            }
+            elseif($objTypeCheckboxCompactOS.Checked -eq $false){
+                if($objTypeCheckboxEA.Checked -eq $false){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                }
+                if($objTypeCheckboxEA.Checked -eq $true){
+                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                }
+            }
+        }
     }
 
 }
-
 )
 
  
