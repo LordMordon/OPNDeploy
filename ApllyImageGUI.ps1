@@ -632,9 +632,11 @@ $captureBtn.Add_Click(
             #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
             #Get-Disk $global:SelectetDirveApplyNumber | Clear-Disk -RemoveData
             #New-Partition -DiskNumber 1 -Size 100 -IsActive -DriveLetter S | Format-Volume -FileSystem fat32 -NewFileSystemLabel System
-
-            Start-Sleep -Seconds 2
-            #Start-process DISKPART -argument "/s tempdismcommands.txt"
+            $filecontent = Get-Content -Path '.\CreatePartitions-UEFI.txt'
+            $filecontent[7] = $filecontent[7] -replace $filecontent[7],"select disk $($global:SelectetDirveApplyNumber)"
+            Set-Content -Path '.\CreatePartitions-UEFI.txt' -Value $filecontent
+            Start-Sleep -Seconds 15
+            Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
@@ -662,11 +664,14 @@ $captureBtn.Add_Click(
         }else{
             #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             #Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
-            $tempdism = Get-Content '.\CreatePartitions-UEFI-FFU.txt'
-            $temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
-            $temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
-            Start-Sleep -Seconds 2
-            Start-process DISKPART -argument "/s tempdismcommands.txt"
+            #$tempdism = Get-Content '.\CreatePartitions-UEFI-FFU.txt'
+            #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            $filecontent = Get-Content -Path '.\CreatePartitions-UEFI-FFU.txt'
+            $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            Set-Content -Path '.\CreatePartitions-UEFI-FFU.txt' -Value $filecontent
+            Start-Sleep -Seconds 15
+            Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
@@ -699,11 +704,14 @@ $captureBtn.Add_Click(
         if($objTypeCheckbox.Checked -eq $true){
             #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             #Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
-            $tempdism = Get-Content '.\CreatePartitions-BIOS.txt'
-            $temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
-            $temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
-            Start-Sleep -Seconds 2
-            Start-process DISKPART -argument "/s tempdismcommands.txt"
+            $filecontent = Get-Content -Path '.\CreatePartitions-BIOS.txt'
+            $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            Set-Content -Path '.\CreatePartitions-BIOS.txt' -Value $filecontent
+            #$tempdism = Get-Content '.\CreatePartitions-BIOS.txt'
+            #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            Start-Sleep -Seconds 15
+            Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
@@ -731,11 +739,14 @@ $captureBtn.Add_Click(
         }else{
             #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             #Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
-            $tempdism = Get-Content '.\CreatePartitions-BIOS-FFU.txt'
-            $temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
-            $temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
-            Start-Sleep -Seconds 2
-            Start-process DISKPART -argument "/s tempdismcommands.txt"
+            #$tempdism = Get-Content '.\CreatePartitions-BIOS-FFU.txt'
+            #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            $filecontent = Get-Content -Path '.\CreatePartitions-BIOS-FFU.txt'
+            $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            Set-Content -Path '.\CreatePartitions-BIOS-FFU.txt' -Value $filecontent
+            Start-Sleep -Seconds 15
+            Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
