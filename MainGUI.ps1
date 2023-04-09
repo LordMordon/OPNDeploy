@@ -100,6 +100,29 @@ $ButtonApllyIMG.ForeColor             = "#ffffff"
 $form.Controls.Add($ButtonApllyIMG)
 
 
+$Buttonstartcmd = New-Object System.Windows.Forms.Button
+
+$Buttonstartcmd.BackColor             = "#707070"
+
+$Buttonstartcmd.text                  = "CMD"
+
+$Buttonstartcmd.width                 = convertWidth(9)
+
+$Buttonstartcmd.height                = convertHeigth(3)
+
+$Buttonstartcmdpos1 = convertWidth(22)
+
+$Buttonstartcmdpos2 = convertHeigth(96)
+
+$Buttonstartcmd.location              = New-Object System.Drawing.Point($Buttonstartcmdpos1,$Buttonstartcmdpos2)
+
+$Buttonstartcmd.Font                  = ('Microsoft Sans Serif,' + [String](convertText(0.6)))
+
+$Buttonstartcmd.ForeColor             = "#ffffff"
+
+$form.Controls.Add($Buttonstartcmd)
+
+
 
 
 $ButtonUP.Add_Click(
@@ -115,6 +138,12 @@ $ButtonApllyIMG.Add_Click(
 
      Start-process PowerShell -argument "-noexit -file .\ApllyImageGUI.ps1" -NoNewWindow
 
+}
+)
+
+$Buttonstartcmd.Add_Click(
+{
+	Start-process 'X:\Windows\System32\cmd.exe'
 }
 )
 

@@ -627,57 +627,68 @@ $captureBtn.Add_Click(
 
     if($objCombobox.Text -eq "Uefi"){
         if($objTypeCheckbox.Checked -eq $true){
-            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
-            Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
+            #$tempdism = Get-Content '.\CreatePartitions-UEFI.txt'
+            #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            #Get-Disk $global:SelectetDirveApplyNumber | Clear-Disk -RemoveData
+            #New-Partition -DiskNumber 1 -Size 100 -IsActive -DriveLetter S | Format-Volume -FileSystem fat32 -NewFileSystemLabel System
+
+            Start-Sleep -Seconds 2
+            #Start-process DISKPART -argument "/s tempdismcommands.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact -SupportEa
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -SupportEa
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
             }
         }else{
-            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
-            Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
+            #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
+            #Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
+            $tempdism = Get-Content '.\CreatePartitions-UEFI-FFU.txt'
+            $temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            $temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            Start-Sleep -Seconds 2
+            Start-process DISKPART -argument "/s tempdismcommands.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact -SupportEa
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
-                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                     Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -SupportEa
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
             }
             
@@ -686,48 +697,66 @@ $captureBtn.Add_Click(
     
     if($objCombobox.Text -eq "Bios"){
         if($objTypeCheckbox.Checked -eq $true){
-            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
-            Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
+            #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
+            #Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
+            $tempdism = Get-Content '.\CreatePartitions-BIOS.txt'
+            $temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            $temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            Start-Sleep -Seconds 2
+            Start-process DISKPART -argument "/s tempdismcommands.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact
                     Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact -SupportEa
                     Start-Process '.\applyimgdismp2.bat' -Verb RunAs
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1
                     Start-Process '.\applyimgdismp3.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -SupportEa
                     Start-Process '.\applyimgdismp4.bat' -Verb RunAs
                 }
             }
         }else{
-            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
-            Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
+            #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
+            #Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
+            $tempdism = Get-Content '.\CreatePartitions-BIOS-FFU.txt'
+            $temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
+            $temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
+            Start-Sleep -Seconds 2
+            Start-process DISKPART -argument "/s tempdismcommands.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact
                     Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact -SupportEa
                     Start-Process '.\applyimgdismp2.bat' -Verb RunAs
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1
                     Start-Process '.\applyimgdismp3.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
                     Start-Sleep -Seconds 20
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -SupportEa
                     Start-Process '.\applyimgdismp4.bat' -Verb RunAs
                 }
             }
