@@ -6,7 +6,7 @@ rem    Adjust the partition sizes to fill the drive
 rem    as necessary. ==
 rem select disk 1
 clean
-rem convert gpt
+convert gpt
 rem == 1. System partition =========================
 create partition efi size=100
 rem    ** NOTE: For Advanced Format 4Kn drives,

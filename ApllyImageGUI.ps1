@@ -633,11 +633,8 @@ $captureBtn.Add_Click(
             #Get-Disk $global:SelectetDirveApplyNumber | Clear-Disk -RemoveData
             #New-Partition -DiskNumber 1 -Size 100 -IsActive -DriveLetter S | Format-Volume -FileSystem fat32 -NewFileSystemLabel System
             $filecontent = Get-Content -Path '.\CreatePartitions-UEFI.txt'
-            $filecontent[7] = $filecontent[7] -replace $filecontent[7],"select disk $($global:SelectetDirveApplyNumber)"
+            $filecontent[6] = $filecontent[6] -replace $filecontent[6],"select disk $($global:SelectetDirveApplyNumber)"
             $tempPatitionsstyle = Get-Disk $global:SelectetDirveApplyNumber
-            if ($tempPatitionsstyle.PartitionStyle -eq 'MBR'){
-                $filecontent[9] = $filecontent[9] -replace $filecontent[9],"convert gpt"
-            }
             Set-Content -Path '.\CreatePartitions-UEFI.txt' -Value $filecontent
             Start-Sleep -Seconds 15
             Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
@@ -672,11 +669,8 @@ $captureBtn.Add_Click(
             #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
             #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
             $filecontent = Get-Content -Path '.\CreatePartitions-UEFI-FFU.txt'
-            $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            $filecontent[6] = $filecontent[6] -replace $filecontent[6],'select disk $($global:SelectetDirveApplyNumber)'
             $tempPatitionsstyle = Get-Disk $global:SelectetDirveApplyNumber
-            if ($tempPatitionsstyle.PartitionStyle -eq 'MBR'){
-                $filecontent[9] = $filecontent[9] -replace $filecontent[9],"convert gpt"
-            }
             Set-Content -Path '.\CreatePartitions-UEFI-FFU.txt' -Value $filecontent
             Start-Sleep -Seconds 15
             Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
@@ -713,7 +707,7 @@ $captureBtn.Add_Click(
             #Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             #Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
             $filecontent = Get-Content -Path '.\CreatePartitions-BIOS.txt'
-            $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            $filecontent[6] = $filecontent[6] -replace $filecontent[6],'select disk $($global:SelectetDirveApplyNumber)'
             Set-Content -Path '.\CreatePartitions-BIOS.txt' -Value $filecontent
             #$tempdism = Get-Content '.\CreatePartitions-BIOS.txt'
             #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
@@ -751,7 +745,7 @@ $captureBtn.Add_Click(
             #$temcaomands = "select disk $($global:SelectetDirveApplyNumber)" | Out-File -FilePath '.\tempdismcommands.txt'
             #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
             $filecontent = Get-Content -Path '.\CreatePartitions-BIOS-FFU.txt'
-            $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            $filecontent[6] = $filecontent[6] -replace $filecontent[6],'select disk $($global:SelectetDirveApplyNumber)'
             Set-Content -Path '.\CreatePartitions-BIOS-FFU.txt' -Value $filecontent
             Start-Sleep -Seconds 15
             Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
