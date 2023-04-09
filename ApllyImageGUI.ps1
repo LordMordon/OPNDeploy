@@ -627,39 +627,57 @@ $captureBtn.Add_Click(
 
     if($objCombobox.Text -eq "Uefi"){
         if($objTypeCheckbox.Checked -eq $true){
+            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact -SupportEa
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -SupportEa
                 }
             }
         }else{
+            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -Compact -SupportEa
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
+                    Expand-WindowsImage -ImagePath $objTextBox.Text -ApplyPath "w:\" -Index 1 -SupportEa
                 }
             }
             
@@ -668,39 +686,49 @@ $captureBtn.Add_Click(
     
     if($objCombobox.Text -eq "Bios"){
         if($objTypeCheckbox.Checked -eq $true){
+            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp2.bat' -Verb RunAs
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp3.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp4.bat' -Verb RunAs
                 }
             }
         }else{
+            Start-process DISKPART -argument "select disk $($global:SelectetDirveApplyNumber)"
             Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp1.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp2.bat' -Verb RunAs
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp3.bat' -Verb RunAs
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-Sleep -Seconds 20
+                    Start-Process '.\applyimgdismp4.bat' -Verb RunAs
                 }
             }
         }

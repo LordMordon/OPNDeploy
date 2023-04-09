@@ -4,7 +4,7 @@ rem    create four partitions
 rem    for a UEFI/GPT-based PC.
 rem    Adjust the partition sizes to fill the drive
 rem    as necessary. ==
-select disk 0
+rem select disk 1
 clean
 convert gpt
 rem == 1. System partition =========================
