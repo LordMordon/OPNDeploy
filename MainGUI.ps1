@@ -60,7 +60,7 @@ $ButtonUP.BackColor             = "#707070"
 
 $ButtonUP.text                  = "Capture Image"
 
-$ButtonUP.width                 = convertWidth(9)
+$ButtonUP.width                 = convertWidth(10)
 
 $ButtonUP.height                = convertHeigth(3)
 
@@ -87,7 +87,7 @@ $ButtonApllyIMG.width                 = convertWidth(9)
 
 $ButtonApllyIMG.height                = convertHeigth(3)
 
-$ButtonApllyIMGpos1 = convertWidth(11)
+$ButtonApllyIMGpos1 = convertWidth(12)
 
 $ButtonApllyIMGpos2 = convertHeigth(96)
 
