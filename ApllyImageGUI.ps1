@@ -673,6 +673,10 @@ $captureBtn.Add_Click(
             #$temcaomands2 = $tempdism | Out-File -FilePath '.\tempdismcommands.txt' -Append
             $filecontent = Get-Content -Path '.\CreatePartitions-UEFI-FFU.txt'
             $filecontent[7] = $filecontent[7] -replace $filecontent[7],'select disk $($global:SelectetDirveApplyNumber)'
+            $tempPatitionsstyle = Get-Disk $global:SelectetDirveApplyNumber
+            if ($tempPatitionsstyle.PartitionStyle -eq 'MBR'){
+                $filecontent[9] = $filecontent[9] -replace $filecontent[9],"convert gpt"
+            }
             Set-Content -Path '.\CreatePartitions-UEFI-FFU.txt' -Value $filecontent
             Start-Sleep -Seconds 15
             Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
