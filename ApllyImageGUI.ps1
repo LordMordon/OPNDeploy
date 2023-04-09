@@ -634,6 +634,10 @@ $captureBtn.Add_Click(
             #New-Partition -DiskNumber 1 -Size 100 -IsActive -DriveLetter S | Format-Volume -FileSystem fat32 -NewFileSystemLabel System
             $filecontent = Get-Content -Path '.\CreatePartitions-UEFI.txt'
             $filecontent[7] = $filecontent[7] -replace $filecontent[7],"select disk $($global:SelectetDirveApplyNumber)"
+            $tempPatitionsstyle = Get-Disk $global:SelectetDirveApplyNumber
+            if ($tempPatitionsstyle.PartitionStyle -eq 'MBR'){
+                $filecontent[9] = $filecontent[9] -replace $filecontent[9],"convert gpt"
+            }
             Set-Content -Path '.\CreatePartitions-UEFI.txt' -Value $filecontent
             Start-Sleep -Seconds 15
             Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
