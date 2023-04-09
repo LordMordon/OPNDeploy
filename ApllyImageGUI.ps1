@@ -630,36 +630,36 @@ $captureBtn.Add_Click(
             Start-process DISKPART -argument "/s CreatePartitions-UEFI.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
                 }
             }
-        }esle{
+        }else{
             Start-process DISKPART -argument "/s CreatePartitions-UEFI-FFU.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
                 }
             }
             
@@ -671,36 +671,36 @@ $captureBtn.Add_Click(
             Start-process DISKPART -argument "/s CreatePartitions-BIOS.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
                 }
             }
-        }esle{
+        }else{
             Start-process DISKPART -argument "/s CreatePartitions-BIOS-FFU.txt"
             if($objTypeCheckboxCompactOS.Checked -eq $true){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /Compact /EA"
                 }
             }
             elseif($objTypeCheckboxCompactOS.Checked -eq $false){
                 if($objTypeCheckboxEA.Checked -eq $false){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\"
                 }
                 if($objTypeCheckboxEA.Checked -eq $true){
-                    Start-process DISM -argument "/Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
+                    Start-process CMD /c "DISM /Apply-Image /ImageFile: " + $objTextBox.Text + " /Index:1 /ApplyDir:W:\ /EA"
                 }
             }
         }
